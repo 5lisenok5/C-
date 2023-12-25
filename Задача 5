@@ -1,0 +1,16 @@
+template <class U>
+U getFact(U n) {
+    U res = 1;
+    for (U i = 1; i <= n; ++i) res *= i;
+    return res;
+}
+
+template <class T, class U>
+T getCos (T x, U n) {
+    T res = 0;
+    for (U i = 0; i < n; ++i) {
+        T this_it = pow(-1, n) * pow(x, 2 * n) / getFact(2 * n);
+        res += this_it;
+    }
+    return res;
+}
