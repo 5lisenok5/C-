@@ -1,0 +1,84 @@
+#include <iostream>
+#include <cmath>
+
+class Vector3D {
+public:
+    double x, y, z;
+
+    // Конструктор по умолчанию
+    Vector3D() : x(0.0), y(0.0), z(0.0) {}
+
+    // Конструктор с заданными координатами
+    Vector3D(double x, double y, double z) : x(x), y(y), z(z) {}
+
+    // Сложение векторов
+    Vector3D operator+(const Vector3D& other) const {
+        return Vector3D(x + other.x, y + other.y, z + other.z);
+    }
+
+    // Вычитание векторов
+    Vector3D operator-(const Vector3D& other) const {
+        return Vector3D(x - other.x, y - other.y, z - other.z);
+    }
+
+    // Скалярное произведение векторов
+    double dotProduct(const Vector3D& other) const {
+        return x * other.x + y * other.y + z * other.z;
+    }
+
+    // Умножение на скаляр
+    Vector3D operator*(double scalar) const {
+        return Vector3D(x * scalar, y * scalar, z * scalar);
+    }
+
+    // Сравнение векторов
+    bool operator==(const Vector3D& other) const {
+        return x == other.x && y == other.y && z == other.z;
+    }
+
+    // Вычисление длины вектора
+    double length() const {
+        return sqrt(x * x + y * y + z * z);
+    }
+
+    // Сравнение длины векторов
+    bool operator<(const Vector3D& other) const {
+        return length() < other.length();
+    }
+
+    bool operator>(const Vector3D& other) const {
+        return length() > other.length();
+    }
+};
+
+int main() {
+    // Пример использования
+    Vector3D v1(1.0, 2.0, 3.0);
+    Vector3D v2(4.0, 5.0, 6.0);
+
+    Vector3D sum = v1 + v2;
+    Vector3D diff = v1 - v2;
+    double dot = v1.dotProduct(v2);
+    Vector3D scaled = v1 * 2.0;
+
+    std::cout << "Sum: (" << sum.x << ", " << sum.y << ", " << sum.z << ")\n";
+    std::cout << "Difference: (" << diff.x << ", " << diff.y << ", " << diff.z << ")\n";
+    std::cout << "Dot Product: " << dot << "\n";
+    std::cout << "Scaled: (" << scaled.x << ", " << scaled.y << ", " << scaled.z << ")\n";
+
+    // Сравнение векторов
+    if (v1 == v2) {
+        std::cout << "Vectors are equal.\n";
+    } else {
+        std::cout << "Vectors are not equal.\n";
+    }
+
+    // Сравнение длины векторов
+    if (v1 < v2) {
+        std::cout << "Vector 1 is shorter than Vector 2.\n";
+    } else {
+        std::cout << "Vector 1 is longer than or equal to Vector 2.\n";
+    }
+
+    return 0;
+}
