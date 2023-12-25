@@ -1,0 +1,57 @@
+ public class Vector3D
+    {
+ 
+        private readonly int _x;
+        private readonly int _y;
+        private readonly int _z;
+ 
+        public Vector3D(int x, int y, int z)
+        {
+            _x = x;
+            _y = y;
+            _z = z;
+        }
+ 
+        public double Length
+        {
+            get { return Math.Sqrt(Math.Pow(_x, 2) + Math.Pow(_y, 2) + Math.Pow(_z, 2)); }
+        }
+ 
+        public static Vector3D operator +(Vector3D a, Vector3D b)
+        {
+            return new Vector3D(a._x + b._x, a._y + b._y, a._z + b._z);
+        }
+        public static Vector3D operator -(Vector3D a, Vector3D b)
+        {
+            return new Vector3D(a._x - b._x, a._y - b._y, a._z - b._z);
+        }
+        public static int operator *(Vector3D a, Vector3D b)
+        {
+            return a._x * b._x + a._y * b._y + a._z * b._z;
+        }
+ 
+        public Vector3D ScalarMultiplication(int scalarNum)
+        {
+            return new Vector3D(_x * scalarNum, _y * scalarNum, _z * scalarNum);
+        }
+ 
+        public bool LengthComparison(Vector3D b)
+        {
+            return Length == b.Length;
+        }
+ 
+        public override bool Equals(object obj)
+        {
+            return _x == ((Vector3D)obj)._x && _y == ((Vector3D)obj)._y && _z == ((Vector3D)obj)._z;
+        }
+ 
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(_x, _y, _z);
+        }
+ 
+        public override string ToString()
+        {
+            return $"{_x};{_y};{_z};";
+        }
+    }
